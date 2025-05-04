@@ -1,0 +1,254 @@
+@font-face {
+  font-family: "Prata";
+  src: url("../assets/fonts/Prata-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* Fonts */
+  --font-size-base: 24px;
+  --font-family-primary: "Prata";
+  --font-family-secondary: "Arial";
+
+  /* Colors - Main (обновленная палитра) */
+  --color-black: rgba(11, 13, 23, 1);
+  --color-white: rgba(255, 255, 255, 1);
+  --color-dark-gray: rgba(76, 86, 106, 1);
+
+  /* Colors - Transparent (новые значения) */
+  --color-header-transparent: rgba(11, 13, 23, 0.92);
+  --color-hover-light: rgba(108, 212, 255, 0.3);
+  --color-hover-dark: rgba(77, 91, 166, 0.4);
+
+  /* UI Elements (адаптированные под тему) */
+  --color-border-light: rgba(74, 111, 165, 0.4);
+  --color-border-dark: rgba(76, 86, 106, 1);
+  --color-form-text: rgba(108, 212, 255, 1);
+  --color-input-placeholder: rgba(140, 146, 172, 0.7);
+
+  /* Border Radius */
+  --radius-large: 30px;
+
+  /* MainColors*/
+  --space-dark: #0b0d17; /* Глубокий космический синий (фон) */
+  --nebula-blue: #4a6fa5; /* Приглушенный синий (акценты) */
+  --starlight-purple: #7d5ba6; /* Фиолетовый с космическим оттенком */
+  --plasma-cyan: #6cd4ff; /* Неоновый голубой (кнопки, ховеры) */
+  --comet-gray: #8c92ac; /* Серый для текста */
+
+  --galaxy-gradient: linear-gradient(
+    45deg,
+    var(--nebula-blue),
+    var(--starlight-purple)
+  );
+
+  --galaxy-gradient-invert: linear-gradient(
+    135deg,
+    rgba(74, 111, 165, 0.8) 0%,
+    /* Nebula Blue */ rgba(125, 91, 166, 0.6) 100% /* Starlight Purple */
+  );
+
+  /* Breakpoints */
+
+  --breakpoint-mobile: 450px;
+  --breakpoint-tablet: 768px;
+  --breakpoint-desktop: 1400px;
+}
+
+body {
+  font-family: var(--font-family-primary), Arial, sans-serif;
+  background-color: var(--color-black);
+  color: var(--color-white);
+  line-height: 1.6;
+
+  font-size: var(--font-base);
+  font-family: var(--font-family-primary), sans-serif;
+  min-height: 100vh;
+  height: 200vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+body.scroll-lock {
+  overflow: hidden;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--color-hover-light);
+  transition: all ease 0.3s;
+}
+a:active {
+  color: var(--color-hover-dark);
+}
+a:visited {
+  color: unset;
+}
+
+/*  HEADER  */
+
+.header {
+  width: 100%;
+
+  position: fixed;
+  top: 0;
+
+  padding: 1rem 0;
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  background-color: transparent;
+  transition: background 0.5s;
+}
+
+.header.scrolled {
+  background-color: var(--starlight-purple);
+}
+
+.header__wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  max-width: var(--breakpoint-desktop);
+  gap: 2rem;
+
+  margin: 0 auto;
+}
+
+.header__logo {
+  font-size: 40px;
+  line-height: 40px;
+  color: var(--color-white);
+  text-transform: uppercase;
+  margin: 0;
+  padding: 0;
+}
+
+/* NAV */
+.main-nav {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-list {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-link {
+  text-decoration: none;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  position: relative;
+  text-transform: uppercase;
+  font-style: italic;
+}
+
+.header__separator {
+  display: flex;
+  width: 40%;
+}
+
+/* BURGER */
+
+.burger__btn {
+  display: none;
+
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 15px;
+  width: 40px;
+  height: 40px;
+  position: relative;
+  z-index: 1100;
+}
+
+.burger-line {
+  width: 30px;
+  height: 0px;
+  border: 1px solid var(--color-white);
+  transition: all 0.3s ease;
+}
+
+.burger__btn.active .burger-line:first-child {
+  transform: rotate(45deg);
+  position: absolute;
+  top: 50%;
+}
+
+.burger__btn.active .burger-line:last-child {
+  transform: rotate(-45deg);
+  position: absolute;
+  top: 50%;
+}
+
+.burger-menu {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 100%;
+  width: 100%;
+  height: 100dvh;
+  background: var(--color-header-transparent);
+  z-index: 1010;
+  justify-content: center;
+  align-items: center;
+  transform: translateX(0%);
+  transition: transform 0.6s ease;
+}
+
+.burger-menu.active {
+  transform: translateX(-100%);
+}
+
+.burger-menu-list {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  padding: 0;
+  text-align: center;
+  gap: 31px;
+}
+
+.burger-menu-list li a {
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.burger-menu-list li a:hover {
+  cursor: pointer;
+  color: var(--color-hover-light);
+}
+.burger-menu-list li a:active {
+  color: var(--color-hover-dark);
+}
+
+@media (max-width: 768px) {
+  .nav-list {
+    gap: 1rem;
+  }
+
+  .nav-link {
+    font-size: 0.9rem;
+  }
+
+  .header__nav {
+    display: none;
+  }
+
+  .burger__btn {
+    display: flex;
+  }
+}
+
+/*  MAIN  */
