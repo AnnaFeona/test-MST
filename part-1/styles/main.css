@@ -74,6 +74,7 @@ body.scroll-lock {
 
 a {
   text-decoration: none;
+  color: var(--nebula-blue);
 }
 
 a:hover {
