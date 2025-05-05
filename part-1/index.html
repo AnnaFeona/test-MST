@@ -114,8 +114,35 @@
         </div>
         <div class="missions__bg_right"></div>
       </section>
-    </main>
 
+      <section class="contact" id="contact">
+        <div class="wrapper contact__wrapper">
+          <div class="contact-form__container">
+            <h2 class="contact__header">Direct Transmission</h2>
+            <form class="contact-form__form" action="" id="contact-form">
+              <input type="text" name="name" placeholder="Your Name" required />
+              <input
+                type="email"
+                name="email"
+                placeholder="Stellar Email"
+                required
+              />
+              <label class="checkbox-label">
+                <input type="checkbox" name="privacy" required />
+                I accept <a href="#">Privacy policy</a>
+              </label>
+              <button type="submit">BEAM MESSAGE</button>
+            </form>
+          </div>
+          <div class="contact-form__image__container">
+            <div class="contact-form__image__bg"></div>
+            <div class="contact-form__image__img">
+              <img src="assets/images/form_img.png" alt="moon car image" />
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
     <footer class="footer">
       <div class="footer__nav">
         <ul class="nav-list">
@@ -353,6 +380,8 @@
         </div>
       </div>
     </footer>
+
+    <div id="notification__container"></div>
 
     <script src="./scripts/main.js"></script>
   </body>

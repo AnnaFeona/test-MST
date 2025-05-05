@@ -59,7 +59,59 @@ const initScroll = () => {
   window.addEventListener("scroll", handleScroll);
 };
 
+const initForm = () => {
+  const form = document.querySelector("#contact-form");
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const targetForm = e.target;
+
+    const name = form.name.value.trim();
+    const email = form.email.value.trim();
+    const privacy = form.privacy.checked;
+
+    const formValue = {
+      name,
+      email,
+      privacy,
+    };
+
+    sendForm(formValue);
+    showNotification(`Thank you, ${name}, for your answer.`);
+  });
+};
+
 document.addEventListener("DOMContentLoaded", () => {
   initBurger();
   initScroll();
+  initForm();
 });
+
+function sendForm(data) {
+  console.log("Form submitted", data);
+}
+
+function showNotification(message) {
+  const container = document.getElementById("notification__container");
+
+  const notification = document.createElement("div");
+  notification.className = "notification";
+  notification.innerHTML = `
+    <button class="close-btn">&times;</button>
+    <p>${message}</p>
+    <div class="progress-bar"></div>
+  `;
+
+  container.appendChild(notification);
+
+  const timeout = setTimeout(() => {
+    container.removeChild(notification);
+  }, 3000);
+
+  // Удалить по кнопке
+  notification.querySelector(".close-btn").addEventListener("click", () => {
+    clearTimeout(timeout);
+    container.removeChild(notification);
+  });
+}
